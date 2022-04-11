@@ -1,6 +1,6 @@
 # HILData
 
-This library provides the data parser and detector classes for data taken with EAGLE at the HIL.
+This library provides the data parser and detector classes for data taken with EAGLE at the HIL (Heavy Ion Laboratory) in Warsaw.
 The names of the classes typically start with THIL.
 
 The data parser is set up to process EAGLE data written in the lst data format.

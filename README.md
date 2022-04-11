@@ -3,7 +3,7 @@
 This library provides the data parser and detector classes for data taken with EAGLE at the HIL (Heavy Ion Laboratory) in Warsaw.
 The names of the classes typically start with THIL.
 
-The data parser is set up to process EAGLE data written in the lst data format.
+The data parser is set up to process EAGLE data written in the rlmd data format.
 
 Two detector classes are implimented: Eagle HPGe (TEagle), Eagle Pulser (TEaglePulser).
 In addition the hit class TPinDiodeHits exist, which is stored in TEagle::fPinDiodeHits.
@@ -12,6 +12,8 @@ Other classes included are:
  - File and event classes for RLMD files,
  - THILMnemonic, which provides an enumeration for the detector systems and digitizers, and
  - THILDetectorInformation, which only provides functions to tell whether EAGLE data is present (which should be all the time)
+
+For now this parser library requires the ```hil-data``` branch of GRSISort.
 
 ## Installation
 

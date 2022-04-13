@@ -59,7 +59,8 @@ void TEagleHit::Copy(TObject& obj, bool waveform) const
 TVector3 TEagleHit::GetPosition(Double_t) const
 {
 	// Gets the position of the current TEagleHit
-	return TEagle::GetPosition(GetDetector());
+	auto vec = TEagle::GetPosition(GetDetector());
+	return TVector3(vec.X(), vec.Y(), vec.Z());
 }
 
 TVector3 TEagleHit::GetPosition() const

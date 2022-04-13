@@ -18,7 +18,7 @@
 #include <vector>
 #include <cstdio>
 
-#include "TVector3.h"
+#include "Math/Vector3D.h"
 
 #include "Globals.h"
 #include "TDetector.h"
@@ -31,7 +31,6 @@ public:
    ~TEagle() override;
    TEagle(const TEagle& rhs);
 
-public:
    TEagleHit* GetEagleHit(const int& i) const { return static_cast<TEagleHit*>(GetHit(i)); }
    TPinDiodeHit* GetPinDiodeHit(const int& i) const;
 #ifndef __CINT__
@@ -39,14 +38,14 @@ public:
 #endif
 	void BuildHits() override {} // no need to build any hits, everything already done in AddFragment
 
-   static TVector3 GetPosition(int DetNbr) { return gDetectorPosition[DetNbr]; } //!<!
-   static TVector3 GetPinDiodePosition(int DetNbr) { return gDiodePosition[DetNbr]; } //!<!
+   static ROOT::Math::Polar3DVector GetPosition(int DetNbr) { return gDetectorPosition[DetNbr]; } //!<!
+   static ROOT::Math::Polar3DVector GetPinDiodePosition(int DetNbr) { return gDiodePosition[DetNbr]; } //!<!
 
    TEagle& operator=(const TEagle&); //!<!
 
 private:
-   static TVector3 gDetectorPosition[17]; //!<!  Position of each detector (plus one default position)
-   static TVector3 gDiodePosition[49]; //!<!  Position of each diode
+   static ROOT::Math::Polar3DVector gDetectorPosition[17]; //!<!  Position of each detector (plus one default position)
+   static ROOT::Math::Polar3DVector gDiodePosition[49]; //!<!  Position of each diode
 
 	std::vector<TPinDiodeHit*> fPinDiodeHits; ///< vector of pin diode hits
 	uint32_t fEventNumber; ///< event number

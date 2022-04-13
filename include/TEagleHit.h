@@ -33,7 +33,7 @@ public:
    TEagleHit(const TEagleHit&);
 	TEagleHit(const uint8_t& id, const uint16_t& energy, const uint16_t& time, const uint64_t& eventTime);
 
-   TVector3 GetPosition(Double_t dist) const override; //!<!
+	TVector3 GetPosition(Double_t dist) const override; //!<!
    TVector3 GetPosition() const override;              //!<!
 
    void Clear(Option_t* opt = "") override;       //!<!

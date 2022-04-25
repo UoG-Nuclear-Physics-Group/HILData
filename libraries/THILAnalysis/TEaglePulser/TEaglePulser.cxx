@@ -43,5 +43,5 @@ void TEaglePulser::AddFragment(const std::shared_ptr<const TFragment>& frag, TCh
 
 void TEaglePulser::Print(Option_t*) const
 {
-   printf("%s\tnot yet written.\n", __PRETTY_FUNCTION__);
+	std::cout<<__PRETTY_FUNCTION__<<"\tnot yet written."<<std::endl;
 }

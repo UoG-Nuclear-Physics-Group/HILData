@@ -1,4 +1,4 @@
-// THILDetectorInformation.h THILMnemonic.h THILFragment.h
+// THILDetectorInformation.h THILMnemonic.h
 
 #ifdef __CINT__
 
@@ -9,7 +9,6 @@
 
 #pragma link C++ class THILDetectorInformation+;
 #pragma link C++ class THILMnemonic+;
-#pragma link C++ class THILFragment+;
 
 #endif
 

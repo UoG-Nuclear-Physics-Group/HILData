@@ -93,7 +93,7 @@ add_library(TEagle SHARED
 	${PROJECT_SOURCE_DIR}/libraries/THILAnalysis/TEagle/THILFragment.cxx
 	)
 root_generate_dictionary(G__TEagle TEagle.h TEagleHit.h TPinDiodeHit.h THILFragment.h MODULE TEagle LINKDEF ${PROJECT_SOURCE_DIR}/libraries/THILAnalysis/TEagle/LinkDef.h)
-target_link_libraries(TEagle THILFormat ${GRSI_LIBRARIES})
+target_link_libraries(TEagle ${GRSI_LIBRARIES})
 
 add_library(TEaglePulser SHARED
 	${PROJECT_SOURCE_DIR}/libraries/THILAnalysis/TEaglePulser/TEaglePulser.cxx

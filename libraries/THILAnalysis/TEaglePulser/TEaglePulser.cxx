@@ -43,5 +43,19 @@ void TEaglePulser::AddFragment(const std::shared_ptr<const TFragment>& frag, TCh
 
 void TEaglePulser::Print(Option_t*) const
 {
-	std::cout<<__PRETTY_FUNCTION__<<"\tnot yet written."<<std::endl;
+	/// Prints out TEaglePulser information
+	Print(std::cout);
 }
+
+void TEaglePulser::Print(std::ostream& out) const
+{
+   /// Prints TEaglePulser information to out
+   std::ostringstream str;
+   str<<this<<": "<<fHits.size()<<" hits"<<std::endl;
+   for(auto hit : fHits) {
+      hit->Print(str);
+   }
+   str<<"----------------------------------------"<<std::endl;
+   out<<str.str();
+}
+

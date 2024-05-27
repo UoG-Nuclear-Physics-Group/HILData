@@ -99,6 +99,7 @@ add_library(TEaglePulser SHARED
 	${PROJECT_SOURCE_DIR}/libraries/THILAnalysis/TEaglePulser/TEaglePulser.cxx
 	)
 root_generate_dictionary(G__TEaglePulser TEaglePulser.h MODULE TEaglePulser LINKDEF ${PROJECT_SOURCE_DIR}/libraries/THILAnalysis/TEaglePulser/LinkDef.h)
+target_link_libraries(TEaglePulser ${GRSI_LIBRARIES})
 
 ##----------------------------------------------------------------------------
 # add the global library with the functions to create files and parsers

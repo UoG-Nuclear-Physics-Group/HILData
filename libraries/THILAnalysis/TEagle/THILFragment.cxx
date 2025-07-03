@@ -53,15 +53,15 @@ bool THILFragment::Good(bool verbose) const
    /// and all silicon vectors matches and there is at least one silicon and one germanium hit.
 
    if(fGermaniumId.empty() || fSiliconId.empty()) {
-      if(verbose) std::cout<<this<<": Either no germanium IDs ("<<fGermaniumId.size()<<") or no silicon IDs ("<<fSiliconId.size()<<")"<<std::endl;
+      if(verbose) std::cout << this << ": Either no germanium IDs (" << fGermaniumId.size() << ") or no silicon IDs (" << fSiliconId.size() << ")" << std::endl;
       return false;
    }
    if(fGermaniumId.size() != fGermaniumEnergy.size() || fGermaniumId.size() != fGermaniumTime.size()) {
-      if(verbose) std::cout<<this<<": Size of germanium IDs ("<<fGermaniumId.size()<<") doesn't match size of germanium energies ("<<fGermaniumEnergy.size()<<") or size of germanium times ("<<fGermaniumTime.size()<<")"<<std::endl;
+      if(verbose) std::cout << this << ": Size of germanium IDs (" << fGermaniumId.size() << ") doesn't match size of germanium energies (" << fGermaniumEnergy.size() << ") or size of germanium times (" << fGermaniumTime.size() << ")" << std::endl;
       return false;
    }
    if(fSiliconId.size() != fSiliconEnergy.size()) {
-      if(verbose) std::cout<<this<<": Size of silicon IDs ("<<fSiliconId.size()<<") doesn't match size of silicon energies ("<<fSiliconEnergy.size()<<")"<<std::endl;
+      if(verbose) std::cout << this << ": Size of silicon IDs (" << fSiliconId.size() << ") doesn't match size of silicon energies (" << fSiliconEnergy.size() << ")" << std::endl;
       return false;
    }
 
@@ -71,15 +71,15 @@ bool THILFragment::Good(bool verbose) const
 void THILFragment::Print(std::ostream& out) const
 {
    std::stringstream str;
-   str<<"THILFragment "<<this<<", #"<<fEventNumber<<": "<<fGermaniumId.size()<<" germaniums and "<<fSiliconId.size()<<" silicons at event time "<<fEventTime<<", and microsecond time "<<fUsTime<<std::endl;
-   str<<"#   Ge# GeEn GeTime Si# SiEn"<<std::endl;
+   str << "THILFragment " << this << ", #" << fEventNumber << ": " << fGermaniumId.size() << " germaniums and " << fSiliconId.size() << " silicons at event time " << fEventTime << ", and microsecond time " << fUsTime << std::endl;
+   str << "#   Ge# GeEn GeTime Si# SiEn" << std::endl;
    for(size_t h = 0; h < fGermaniumId.size(); ++h) {
       if(h < fSiliconId.size()) {
-         str<<std::setw(2)<<h<<"  "<<std::setw(3)<<(int)fGermaniumId.at(h)<<" "<<std::setw(4)<<fGermaniumEnergy.at(h)<<" "<<std::setw(6)<<fGermaniumTime.at(h)<<" "<<std::setw(3)<<(int)fSiliconId.at(h)<<" "<<std::setw(4)<<fSiliconEnergy.at(h)<<std::endl;
+         str << std::setw(2) << h << "  " << std::setw(3) << (int)fGermaniumId.at(h) << " " << std::setw(4) << fGermaniumEnergy.at(h) << " " << std::setw(6) << fGermaniumTime.at(h) << " " << std::setw(3) << (int)fSiliconId.at(h) << " " << std::setw(4) << fSiliconEnergy.at(h) << std::endl;
       } else {
-         str<<std::setw(2)<<h<<"  "<<std::setw(3)<<(int)fGermaniumId.at(h)<<" "<<std::setw(4)<<fGermaniumEnergy.at(h)<<" "<<std::setw(6)<<fGermaniumTime.at(h)<<std::endl;
+         str << std::setw(2) << h << "  " << std::setw(3) << (int)fGermaniumId.at(h) << " " << std::setw(4) << fGermaniumEnergy.at(h) << " " << std::setw(6) << fGermaniumTime.at(h) << std::endl;
       }
    }
-   str<<"============================"<<std::endl;
-   out<<str.str();
+   str << "============================" << std::endl;
+   out << str.str();
 }

@@ -80,9 +80,9 @@ void TPinDiodeHit::Print(std::ostream& out) const
 {
    /// Prints the PinDiodeHit information
    std::ostringstream str;
-   str<<"PinDiode Address:               0x"<<std::setw(4)<<std::hex<<std::setfill('0')<<GetAddress()<<std::setfill(' ')<<std::dec<<std::endl;
-   str<<"PinDiode Detector:              "<<std::setw(16)<<GetDetector()<<std::endl;
-   str<<"PinDiode hit energy:            "<<std::setw(16)<<GetEnergy()<<std::endl;
-   str<<"PinDiode hit time:              "<<std::setw(16)<<GetTime()<<std::endl;
-   out<<str.str();
+   str << "PinDiode Address:               0x" << std::setw(4) << std::hex << std::setfill('0') << GetAddress() << std::setfill(' ') << std::dec << std::endl;
+   str << "PinDiode Detector:              " << std::setw(16) << GetDetector() << std::endl;
+   str << "PinDiode hit energy:            " << std::setw(16) << GetEnergy() << std::endl;
+   str << "PinDiode hit time:              " << std::setw(16) << GetTime() << std::endl;
+   out << str.str();
 }

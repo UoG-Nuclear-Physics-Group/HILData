@@ -75,7 +75,7 @@ bool TRlmdFile::Open(const char* filename)
       fInputStream.open(GetFilename(), std::ifstream::in | std::ifstream::binary);
       fInputStream.seekg(0, std::ifstream::end);
       if(fInputStream.tellg() < 0) {
-         std::cout<<R"(Failed to open ")"<<GetFilename()<<"/"<<Filename()<<R"("!)"<<std::endl;
+         std::cout << R"(Failed to open ")" << GetFilename() << "/" << Filename() << R"("!)" << std::endl;
          return false;
       }
       FileSize(fInputStream.tellg());
@@ -95,7 +95,7 @@ bool TRlmdFile::Open(const char* filename)
       fTemplate  = header.templateName;
       fTemplate  = fTemplate.substr(0, 1480);
    } catch(std::exception& e) {
-      std::cout<<"Caught "<<e.what()<<" at "<<__FILE__<<" : "<<__LINE__<<std::endl;
+      std::cout << "Caught " << e.what() << " at " << __FILE__ << " : " << __LINE__ << std::endl;
    }
 
    // setup TChannel to use our mnemonics
@@ -107,7 +107,7 @@ bool TRlmdFile::Open(const char* filename)
    TRunInfo::SetVersion(HILDATA_RELEASE);
 
    BytesRead(fInputStream.tellg());
-   std::cout<<"Successfully read "<<BytesRead()<<" bytes of header with start date "<<fStartDate<<" "<<fStartTime<<" and template "<<fTemplate<<"!"<<std::endl;
+   std::cout << "Successfully read " << BytesRead() << " bytes of header with start date " << fStartDate << " " << fStartTime << " and template " << fTemplate << "!" << std::endl;
 
    THILDetectorInformation* detInfo = new THILDetectorInformation();
    TRunInfo::SetDetectorInformation(detInfo);
@@ -155,7 +155,7 @@ int TRlmdFile::Read(std::shared_ptr<TRawEvent> Event)
             RlmdEvent->SetData(ReadBuffer());
             ++fBuffersRead;
          } catch(std::exception& e) {
-            std::cout<<"Caught "<<e.what()<<" at "<<__FILE__<<" : "<<__LINE__<<std::endl;
+            std::cout << "Caught " << e.what() << " at " << __FILE__ << " : " << __LINE__ << std::endl;
             return -1;
          }
          break;
@@ -175,7 +175,7 @@ int TRlmdFile::Read(std::shared_ptr<TRawEvent> Event)
          LastReadSize = 0;   // setting this to zero as it doesn't matter in this case?
          break;
       default:
-         std::cerr<<"Unknown buffer type "<<fBufferHeader.type<<std::endl;
+         std::cerr << "Unknown buffer type " << fBufferHeader.type << std::endl;
          break;
       }
    }
@@ -186,7 +186,7 @@ void TRlmdFile::Skip(size_t)
 {
    // this might be wrong, in the case of the rlmd file we could check the data length from the buffer header, skip that far ahead
    // and read the next buffer header
-   std::cerr<<"Sorry, but we can't skip events in an RLMD file, the whole file is treated as a single event!"<<std::endl;
+   std::cerr << "Sorry, but we can't skip events in an RLMD file, the whole file is treated as a single event!" << std::endl;
    return;
 }
 
@@ -215,7 +215,7 @@ int TRlmdFile::GetSubRunNumber()
 time_t TRlmdFile::ConvertToEpoch(const std::string& date, const std::string& time)
 {
    std::stringstream str;
-   str<<date<<time;
+   str << date << time;
    std::tm t = {};
    str >> std::get_time(&t, "%d-%b-%Y %H:%M:S");
    return std::mktime(&t);

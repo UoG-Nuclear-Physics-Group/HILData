@@ -81,10 +81,10 @@ void TEagleHit::Print(std::ostream& out) const
 {
    /// Prints the EagleHit information in a thread-safe way
    std::ostringstream str;
-   str<<"Eagle Address:                  0x"<<std::setw(4)<<std::hex<<std::setfill('0')<<GetAddress()<<std::setfill(' ')<<std::dec<<std::endl;
-   str<<"Eagle Detector:       "<<std::setw(16)<<GetDetector()<<std::endl;
-   str<<"Eagle hit energy:     "<<std::setw(16)<<GetEnergy()<<std::endl;
-   str<<"Eagle hit time stamp: "<<std::setw(16)<<GetTimeStamp()<<std::endl;
-   str<<"Eagle CFD:            "<<std::setw(16)<<GetCfd()<<std::endl;
-   out<<str.str();
+   str << "Eagle Address:                  0x" << std::setw(4) << std::hex << std::setfill('0') << GetAddress() << std::setfill(' ') << std::dec << std::endl;
+   str << "Eagle Detector:       " << std::setw(16) << GetDetector() << std::endl;
+   str << "Eagle hit energy:     " << std::setw(16) << GetEnergy() << std::endl;
+   str << "Eagle hit time stamp: " << std::setw(16) << GetTimeStamp() << std::endl;
+   str << "Eagle CFD:            " << std::setw(16) << GetCfd() << std::endl;
+   out << str.str();
 }

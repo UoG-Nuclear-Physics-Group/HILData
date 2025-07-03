@@ -26,10 +26,10 @@ void THILDetectorInformation::Print(Option_t* opt) const
    // Prints the THILDetectorInformation. Options:
    // a: Print out more details.
    if(strchr(opt, 'a') != nullptr) {
-      std::cout<<"\t\tEAGLE:            "<<(Eagle() ? "true" : "false")<<std::endl;
-      std::cout<<"\t\tEAGLEPULSER:      "<<(EaglePulser() ? "true" : "false")<<std::endl;
-      std::cout<<"\t\tPINDIODE:         "<<(PinDiode() ? "true" : "false")<<std::endl;
-      std::cout<<std::endl;
+      std::cout << "\t\tEAGLE:            " << (Eagle() ? "true" : "false") << std::endl;
+      std::cout << "\t\tEAGLEPULSER:      " << (EaglePulser() ? "true" : "false") << std::endl;
+      std::cout << "\t\tPINDIODE:         " << (PinDiode() ? "true" : "false") << std::endl;
+      std::cout << std::endl;
    }
 }
 

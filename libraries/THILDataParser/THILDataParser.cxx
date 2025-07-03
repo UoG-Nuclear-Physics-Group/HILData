@@ -43,8 +43,8 @@ int THILDataParser::Process(std::shared_ptr<TRawEvent> rawEvent)
       eventsProcessed = -e.GetFailedWord();
       if(!TGRSIOptions::Get()->SuppressErrors()) {
          if(!TGRSIOptions::Get()->LogErrors()) {
-            std::cout<<std::endl
-                     <<e.what();
+            std::cout << std::endl
+                      << e.what();
          }
       }
    }
@@ -74,7 +74,7 @@ int THILDataParser::EagleEventToFragment(uint32_t size, uint16_t* data)
    }
    // 2+3 - buffer number
    uint32_t bufferNumber                = ByteSwap(data[2]);
-   bufferNumber                         = (bufferNumber<<16) | ByteSwap(data[3]);
+   bufferNumber                         = (bufferNumber << 16) | ByteSwap(data[3]);
    uint16_t              eventLength    = 0;
    uint16_t              eventId        = 0;
    uint32_t              acquisitionClk = 0;
@@ -105,9 +105,9 @@ int THILDataParser::EagleEventToFragment(uint32_t size, uint16_t* data)
       eventId = ByteSwap(data[i++]);
       if(eventId == 0x0001) {
          acquisitionClk = ByteSwap(data[i++]);
-         acquisitionClk = (acquisitionClk<<16) | ByteSwap(data[i++]);
+         acquisitionClk = (acquisitionClk << 16) | ByteSwap(data[i++]);
          cpuClk         = ByteSwap(data[i++]);
-         cpuClk         = (cpuClk<<16) | ByteSwap(data[i++]);
+         cpuClk         = (cpuClk << 16) | ByteSwap(data[i++]);
          // we advanced i 6 times so the event length should be 12 and we are done with this event
          if(eventLength != 0x000c) {
             throw THILDataParserException(EDataParserState::kWrongEventLength, i - 6);
@@ -141,11 +141,11 @@ int THILDataParser::EagleEventToFragment(uint32_t size, uint16_t* data)
          break;
       case 0x75:   // CEFE bit pattern
          eventNumber = ByteSwap(data[i++]);
-         eventNumber = (eventNumber<<16) | ByteSwap(data[i++]);
+         eventNumber = (eventNumber << 16) | ByteSwap(data[i++]);
          eventTime   = ByteSwap(data[i++]);
-         eventTime   = (eventTime<<16) | ByteSwap(data[i++]);
-         eventTime   = (eventTime<<16) | ByteSwap(data[i++]);
-         eventTime   = (eventTime<<16) | ByteSwap(data[i++]);
+         eventTime   = (eventTime << 16) | ByteSwap(data[i++]);
+         eventTime   = (eventTime << 16) | ByteSwap(data[i++]);
+         eventTime   = (eventTime << 16) | ByteSwap(data[i++]);
          // CEFE 0
          // pattern and time in microseconds
          pattern = ByteSwap(data[i++]);

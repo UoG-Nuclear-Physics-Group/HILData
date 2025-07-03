@@ -71,14 +71,14 @@ void TRlmdEvent::Print(const char* option) const
    /// printed out too.
    ///
 
-   std::cout<<"Event start:"<<std::endl;
+   std::cout << "Event start:" << std::endl;
    if(option[0] == 'a') {
       for(size_t i = 0; i < fData.size() / 4; ++i) {
-         std::cout<<hex(((uint32_t*)fData.data())[i], 8);
+         std::cout << hex(((uint32_t*)fData.data())[i], 8);
          if(i % 10 == 9) {
-            std::cout<<std::endl;
+            std::cout << std::endl;
          } else {
-            std::cout<<" ";
+            std::cout << " ";
          }
       }
    }

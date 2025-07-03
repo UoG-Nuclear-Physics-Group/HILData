@@ -93,7 +93,7 @@ public:
 private:
    uint16_t ByteSwap(const uint16_t& val)
    {
-      return ((val & 0xff)<<8) | ((val & 0xff00) >> 8);
+      return ((val & 0xff) << 8) | ((val & 0xff00) >> 8);
    }
 
    int EagleEventToFragment(uint32_t size, uint16_t* data);

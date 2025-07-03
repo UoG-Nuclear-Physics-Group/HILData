@@ -136,7 +136,7 @@ void TEagle::AddFragment(const std::shared_ptr<const TFragment>& frag, TChannel*
 {
    auto hilFragment = std::static_pointer_cast<const THILFragment>(frag);
    if(!hilFragment->Good(true)) {
-      std::cerr<<"Bad fragment passed along to "<<__PRETTY_FUNCTION__<<std::endl;
+      std::cerr << "Bad fragment passed along to " << __PRETTY_FUNCTION__ << std::endl;
       return;
    }
    for(size_t h = 0; h < hilFragment->GermaniumMultiplicity(); ++h) {
@@ -156,7 +156,7 @@ TPinDiodeHit* TEagle::GetPinDiodeHit(const int& i) const
    try {
       return fPinDiodeHits.at(i);   //static_cast<TPinDiodeHit*>(fPinDiodeHits.at(i));
    } catch(const std::out_of_range& oor) {
-      std::cerr<<ClassName()<<" is out of range: "<<oor.what()<<std::endl;
+      std::cerr << ClassName() << " is out of range: " << oor.what() << std::endl;
       throw grsi::exit_exception(1);
    }
 }
@@ -171,14 +171,14 @@ void TEagle::Print(std::ostream& out) const
 {
    /// Prints out TEagle information
    std::ostringstream str;
-   str<<this<<": "<<Hits().size()<<" germanium and "<<fPinDiodeHits.size()<<" silicon hits"<<std::endl
-      <<"event #"<<fEventNumber<<", "<<fUsTime<<" microseconds"<<std::endl;
+   str << this << ": " << Hits().size() << " germanium and " << fPinDiodeHits.size() << " silicon hits" << std::endl
+       << "event #" << fEventNumber << ", " << fUsTime << " microseconds" << std::endl;
    for(const auto& hit : Hits()) {
       hit->Print(str);
    }
    for(auto hit : fPinDiodeHits) {
       hit->Print(str);
    }
-   str<<"----------------------------------------"<<std::endl;
-   out<<str.str();
+   str << "----------------------------------------" << std::endl;
+   out << str.str();
 }

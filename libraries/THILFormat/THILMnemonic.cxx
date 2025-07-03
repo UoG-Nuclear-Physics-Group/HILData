@@ -51,10 +51,10 @@ void THILMnemonic::Parse(std::string* name)
 void THILMnemonic::Print(Option_t*) const
 {
    std::ostringstream str;
-   std::cout<<"====== HILMNEMONIC ============"<<std::endl;
+   std::cout << "====== HILMNEMONIC ============" << std::endl;
    TMnemonic::Print(str);
-   std::cout<<"==============================="<<std::endl;
-   std::cout<<str.str();
+   std::cout << "===============================" << std::endl;
+   std::cout << str.str();
 }
 
 TClass* THILMnemonic::GetClassType() const

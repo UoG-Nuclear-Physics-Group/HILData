@@ -46,10 +46,10 @@ void TEaglePulser::Print(std::ostream& out) const
 {
    /// Prints TEaglePulser information to out
    std::ostringstream str;
-   str<<this<<": "<<Hits().size()<<" hits"<<std::endl;
+   str << this << ": " << Hits().size() << " hits" << std::endl;
    for(const auto& hit : Hits()) {
       hit->Print(str);
    }
-   str<<"----------------------------------------"<<std::endl;
-   out<<str.str();
+   str << "----------------------------------------" << std::endl;
+   out << str.str();
 }

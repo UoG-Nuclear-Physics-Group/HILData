@@ -6,11 +6,6 @@
 
 #include "TGRSIOptions.h"
 
-/// \cond CLASSIMP
-ClassImp(TEaglePulser)
-/// \endcond
-
-
 TEaglePulser::TEaglePulser()
 {
    Clear();
@@ -31,31 +26,30 @@ TEaglePulser::TEaglePulser(const TEaglePulser& rhs) : TDetector()
 
 void TEaglePulser::AddFragment(const std::shared_ptr<const TFragment>& frag, TChannel* chan)
 {
-	
+
    /// This function creates TEaglePulserHits for each fragment and stores them in separate front and back vectors
    if(frag == nullptr || chan == nullptr) {
       return;
    }
 
    auto hit = new TDetectorHit(*frag);
-   fHits.push_back(hit);
+   Hits().push_back(hit);
 }
 
 void TEaglePulser::Print(Option_t*) const
 {
-	/// Prints out TEaglePulser information
-	Print(std::cout);
+   /// Prints out TEaglePulser information
+   Print(std::cout);
 }
 
 void TEaglePulser::Print(std::ostream& out) const
 {
    /// Prints TEaglePulser information to out
    std::ostringstream str;
-   str<<this<<": "<<fHits.size()<<" hits"<<std::endl;
-   for(auto hit : fHits) {
+   str<<this<<": "<<Hits().size()<<" hits"<<std::endl;
+   for(const auto& hit : Hits()) {
       hit->Print(str);
    }
    str<<"----------------------------------------"<<std::endl;
    out<<str.str();
 }
-

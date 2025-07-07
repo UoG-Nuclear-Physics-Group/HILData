@@ -31,35 +31,36 @@ public:
    ~TEagle() override;
    TEagle(const TEagle& rhs);
 
-   TEagleHit* GetEagleHit(const int& i) const { return static_cast<TEagleHit*>(GetHit(i)); }
+   TEagleHit*    GetEagleHit(const int& i) const { return static_cast<TEagleHit*>(GetHit(i)); }
    TPinDiodeHit* GetPinDiodeHit(const int& i) const;
 #ifndef __CINT__
-   void AddFragment(const std::shared_ptr<const TFragment>&, TChannel*) override; //!<!
+   void AddFragment(const std::shared_ptr<const TFragment>&, TChannel*) override;   //!<!
 #endif
-	void BuildHits() override {} // no need to build any hits, everything already done in AddFragment
+   void BuildHits() override
+   {}   // no need to build any hits, everything already done in AddFragment
 
-   static ROOT::Math::Polar3DVector GetPosition(int DetNbr) { return gDetectorPosition[DetNbr]; } //!<!
-   static ROOT::Math::Polar3DVector GetPinDiodePosition(int DetNbr) { return gDiodePosition[DetNbr]; } //!<!
+   static ROOT::Math::Polar3DVector GetPosition(int DetNbr) { return gDetectorPosition[DetNbr]; }        //!<!
+   static ROOT::Math::Polar3DVector GetPinDiodePosition(int DetNbr) { return gDiodePosition[DetNbr]; }   //!<!
 
-   TEagle& operator=(const TEagle&); //!<!
+   TEagle& operator=(const TEagle&);   //!<!
 
 private:
-   static ROOT::Math::Polar3DVector gDetectorPosition[17]; //!<!  Position of each detector (plus one default position)
-   static ROOT::Math::Polar3DVector gDiodePosition[49]; //!<!  Position of each diode
+   static ROOT::Math::Polar3DVector gDetectorPosition[17];   //!<!  Position of each detector (plus one default position)
+   static ROOT::Math::Polar3DVector gDiodePosition[49];      //!<!  Position of each diode
 
-	std::vector<TPinDiodeHit*> fPinDiodeHits; ///< vector of pin diode hits
-	uint32_t fEventNumber; ///< event number
-	uint16_t fUsTime;      ///< time in microseconds
+   std::vector<TPinDiodeHit*> fPinDiodeHits;   ///< vector of pin diode hits
+   uint32_t                   fEventNumber;    ///< event number
+   uint16_t                   fUsTime;         ///< time in microseconds
 
 public:
-	void Copy(TObject&) const override;            //!<!
-	void Clear(Option_t* opt = "all") override;    //!<!
-   void Print(Option_t* opt = "") const override; //!<!
-   void Print(std::ostream& out) const override;  //!<!
+   void Copy(TObject&) const override;              //!<!
+   void Clear(Option_t* opt = "all") override;      //!<!
+   void Print(Option_t* opt = "") const override;   //!<!
+   void Print(std::ostream& out) const override;    //!<!
 
    /// \cond CLASSIMP
-   ClassDefOverride(TEagle, 1) // Eagle Physics structure
-	/// \endcond
+   ClassDefOverride(TEagle, 1)   // Eagle Physics structure
+                                 /// \endcond
 };
 /*! @} */
 #endif

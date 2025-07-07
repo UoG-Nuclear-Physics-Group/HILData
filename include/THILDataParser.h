@@ -46,50 +46,59 @@ public:
    ~THILDataParser();
 
    // ENUM(EBank, char, kWFDN,kGRF1,kGRF2,kGRF3,kFME0,kFME1,kFME2,kFME3);
-   enum class EBank { kWFDN = 0, kGRF1 = 1, kGRF2 = 2, kGRF3 = 3, kGRF4 = 4, kFME0 = 5, kFME1 = 6, kFME2 = 7, kFME3 = 8 };
+   enum class EBank { kWFDN = 0,
+                      kGRF1 = 1,
+                      kGRF2 = 2,
+                      kGRF3 = 3,
+                      kGRF4 = 4,
+                      kFME0 = 5,
+                      kFME1 = 6,
+                      kFME2 = 7,
+                      kFME3 = 8 };
 
    enum class EDigitizer {
-       kV1751 = 1,
-       kV1724 = 2,
-       kV1730_PSD = 3,
-       kV1730_PHA = 4,
-       kV1725_PHA = 7,
-       kV1725_PSD = 8
+      kV1751     = 1,
+      kV1724     = 2,
+      kV1730_PSD = 3,
+      kV1730_PHA = 4,
+      kV1725_PHA = 7,
+      kV1725_PSD = 8
    };
 
    enum class EDataParserState {
       kGood,
       kOddUsedLength,
-		kWrongBufferType,
-		kZeroEventLength,
-		kOddEventLength,
-		kWrongEventLength,
-		kWrongUsPattern,
-		kWrongGeHPPattern,
-		kWrongGeEnPattern,
-		kWrongGeTimePattern,
-		kWrongSi1HPPattern,
-		kWrongSi1EnPattern,
-		kWrongSi2HPPattern,
-		kWrongSi2EnPattern,
-		kWrongSi3HPPattern,
-		kWrongSi3EnPattern,
-		kWrongEventId,
-		kUndefined
-	};
+      kWrongBufferType,
+      kZeroEventLength,
+      kOddEventLength,
+      kWrongEventLength,
+      kWrongUsPattern,
+      kWrongGeHPPattern,
+      kWrongGeEnPattern,
+      kWrongGeTimePattern,
+      kWrongSi1HPPattern,
+      kWrongSi1EnPattern,
+      kWrongSi2HPPattern,
+      kWrongSi2EnPattern,
+      kWrongSi3HPPattern,
+      kWrongSi3EnPattern,
+      kWrongEventId,
+      kUndefined
+   };
 
 #ifndef __CINT__
-	int Process(std::shared_ptr<TRawEvent>) override;
+   int Process(std::shared_ptr<TRawEvent>) override;
 #endif
 
 private:
-	uint16_t ByteSwap(const uint16_t& val) {
-		return ((val&0xff) << 8) | ((val&0xff00) >> 8);
-	}
+   uint16_t ByteSwap(const uint16_t& val)
+   {
+      return ((val & 0xff) << 8) | ((val & 0xff00) >> 8);
+   }
 
-	int EagleEventToFragment(uint32_t size, uint16_t* data);
+   int EagleEventToFragment(uint32_t size, uint16_t* data);
 
-	EDataParserState fState;
+   EDataParserState fState;
 };
 /*! @} */
 #endif

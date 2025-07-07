@@ -19,6 +19,7 @@ ROOT_PYTHON_VERSION=$(shell root-config --python-version)
 
 MATHMORE_INSTALLED:=$(shell root-config --has-mathmore)
 XML_INSTALLED:=$(shell root-config --has-xml)
+PROOF_INSTALLED:=$(shell root-config --has-proof)
 
 # Functions for determining the files included in a library.
 # All src files in the library directory are included.
@@ -46,7 +47,7 @@ LIBRARY_DIRS   := $(shell $(FIND) libraries/* -type d)
 else
 export __LINUX__:= 1
 CPP        = g++
-CFLAGS     += -Wl,--no-as-needed
+CFLAGS     += -DHAVE_ZLIB -Wl,--no-as-needed
 LINKFLAGS_PREFIX += -Wl,--no-as-needed
 SHAREDSWITCH = -shared -Wl,-soname,# NO ENDING SPACE
 HEAD=head
@@ -85,21 +86,22 @@ INCLUDES  := $(addprefix -I$(CURDIR)/,$(INCLUDES)) -I$(shell grsi-config --incdi
 CFLAGS    += $(shell grsi-config --cflags)
 CFLAGS    += $(shell root-config --cflags)
 CFLAGS    += -MMD -MP $(INCLUDES)
-LINKFLAGS += $(shell root-config --glibs) -lSpectrum -lMinuit -lGuiHtml -lTreePlayer -lX11 -lXpm -lProof -lTMVA
+LINKFLAGS += $(shell root-config --glibs) -lTMVA
+ifeq ($(PROOF_INSTALLED),yes)
+	LINKFLAGS += -lProof
+endif
 LINKFLAGS += $(shell grsi-config --all-libs)
-LINKFLAGS += $(shell grsi-config --HILData-libs)
+#LINKFLAGS += $(shell grsi-config --GRSIData-libs)
 
-# RCFLAGS are being used for rootcint
+# RCFLAGS are being used for rootcint, don't add it to the LINKFLAGS, that's already taken care of by grsi-config --all-libs
 ifeq ($(MATHMORE_INSTALLED),yes)
   CFLAGS += -DHAS_MATHMORE
   RCFLAGS += -DHAS_MATHMORE
-  LINKFLAGS += -lMathMore
 endif
 
 ifeq ($(XML_INSTALLED),yes)
   CFLAGS += -DHAS_XML
   RCFLAGS += -DHAS_XML
-  LINKFLAGS += -lXMLParser -lXMLIO
 endif
 
 LINKFLAGS := $(LINKFLAGS_PREFIX) $(LINKFLAGS) $(LINKFLAGS_SUFFIX) $(CFLAGS)

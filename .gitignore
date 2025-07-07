@@ -16,7 +16,7 @@ htmldoc
 .nfs*
 G__auto*
 *.log
-include/ILLDataVersion.h
+include/HILDataVersion.h
 .grsi_thread
 *.pyc
 __pycache__

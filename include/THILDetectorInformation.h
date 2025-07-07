@@ -24,30 +24,30 @@ class THILDetectorInformation : public TDetectorInformation {
 public:
    THILDetectorInformation();
    ~THILDetectorInformation() override;
-	
-	TEventBuildingLoop::EBuildMode BuildMode() const override;
 
-	void Print(Option_t* opt = "") const override;
-	void Clear(Option_t* = "") override;
-	void Set() override;
+   TEventBuildingLoop::EBuildMode BuildMode() const override;
 
-   inline void SetEagle(bool flag = true)       { fEagle       = flag; }
-   inline void SetPinDiode(bool flag = true)    { fPinDiode       = flag; }
+   void Print(Option_t* opt = "") const override;
+   void Clear(Option_t* = "") override;
+   void Set() override;
+
+   inline void SetEagle(bool flag = true) { fEagle = flag; }
+   inline void SetPinDiode(bool flag = true) { fPinDiode = flag; }
    inline void SetEaglePulser(bool flag = true) { fEaglePulser = flag; }
 
-   inline bool Eagle()       const { return fEagle; }
-   inline bool PinDiode()    const { return fPinDiode; }
+   inline bool Eagle() const { return fEagle; }
+   inline bool PinDiode() const { return fPinDiode; }
    inline bool EaglePulser() const { return fEaglePulser; }
 
 private:
    //  detector types to switch over in Set()
 
-   bool fEagle{false}; // flag for Eagle on/off
-   bool fPinDiode{false}; // flag for pin diode on/off
+   bool fEagle{false};      // flag for Eagle on/off
+   bool fPinDiode{false};   // flag for pin diode on/off
    bool fEaglePulser{false};
 
    /// \cond CLASSIMP
-   ClassDefOverride(THILDetectorInformation, 1); // Contains the run-dependent information.
+   ClassDefOverride(THILDetectorInformation, 1);   // Contains the run-dependent information.
    /// \endcond
 };
 /*! @} */

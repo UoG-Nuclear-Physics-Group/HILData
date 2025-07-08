@@ -149,7 +149,7 @@ doxygen:
 	$(MAKE) -C $@
 
 $(GRSISYS)/bin/%: .build/util/%.o | $(LIBRARY_OUTPUT) include/HILDataVersion.h lib/libHILData.so
-	$(call run_and_test,$(CPP) $< -o $@ $(LINKFLAGS),$@,$(COM_COLOR),$(COM_STRING),$(OBJ_COLOR) )
+	$(call run_and_test,$(CPP) $< -o $@ $(LINKFLAGS) $(shell grsi-config --HILData-libs),$@,$(COM_COLOR),$(COM_STRING),$(OBJ_COLOR) )
 
 lib: include/HILDataVersion.h
 	@mkdir -p $@

@@ -33,7 +33,7 @@ All EAGLE detector hits are set to address 0x100 plus their ID, and all pin diod
 Since each RLMD eagle event contains the complete information of that event (one or more Germanium hits, and one or more PIN diode hits), all of this information is stored in a TEagle detector.
 The default address used for this TEagle detector is ```0x100```, and for it to be sorted correctly, the cal-file needs at least this one address to be defined:
 
-```
+```asciidoc
 EAX01XN00X      {
 Type:      TEagle
 Name:      EAX01XN00X

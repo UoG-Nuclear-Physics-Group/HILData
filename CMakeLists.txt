@@ -74,7 +74,7 @@ add_library(TRlmd SHARED
 	${PROJECT_SOURCE_DIR}/libraries/TRlmd/TRlmdFile.cxx
 	)
 root_generate_dictionary(G__TRlmd TRlmdEvent.h TRlmdFile.h MODULE TRlmd LINKDEF ${PROJECT_SOURCE_DIR}/libraries/TRlmd/LinkDef.h OPTIONS ${CLING_OPTIONS})
-target_link_libraries(TRlmd THILFormat ${ROOT_LIBRARIES})
+target_link_libraries(TRlmd THILFormat ${ROOT_LIBRARIES} ${GRSI_LIBRARIES})
 add_dependencies(TRlmd HILDataVersion)
 
 add_library(THILFormat SHARED
@@ -82,13 +82,13 @@ add_library(THILFormat SHARED
 	${PROJECT_SOURCE_DIR}/libraries/THILFormat/THILMnemonic.cxx
 	)
 root_generate_dictionary(G__THILFormat THILDetectorInformation.h THILMnemonic.h MODULE THILFormat LINKDEF ${PROJECT_SOURCE_DIR}/libraries/THILFormat/LinkDef.h)
-target_link_libraries(THILFormat TEagle TEaglePulser)
+target_link_libraries(THILFormat TEagle TEaglePulser ${GRSI_LIBRARIES})
 
 add_library(THILDataParser SHARED
 	${PROJECT_SOURCE_DIR}/libraries/THILDataParser/THILDataParser.cxx
 	${PROJECT_SOURCE_DIR}/libraries/THILDataParser/THILDataParserException.cxx
 	)
-target_link_libraries(THILDataParser THILFormat)
+target_link_libraries(THILDataParser THILFormat ${GRSI_LIBRARIES})
 
 add_library(TEagle SHARED
 	${PROJECT_SOURCE_DIR}/libraries/THILAnalysis/TEagle/TEagle.cxx

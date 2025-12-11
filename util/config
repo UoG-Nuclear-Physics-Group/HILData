@@ -52,9 +52,6 @@ else
 	exit
 fi
 
-libdir="${GRSISYS}/HILData/lib"
-incdir="${GRSISYS}/HILData/include"
-
 libs="TEaglePulser TEagle THILAnalysis THILDataParser THILFormat TLmd"
 
 if [[ $(root-config --cflags) == *"-std="* ]]

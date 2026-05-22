@@ -35,20 +35,20 @@ if ! fullpath1=$($readlink "$fullpath"); then
   fullpath1=$fullpath
 fi
 
-if [ -d "${GRSISYS}/HILData/lib" ] ; then
-	libdir="${GRSISYS}/HILData/lib"
-elif [ -d "${GRSISYS}/lib" ] ; then
-	libdir="${GRSISYS}/lib"
+if [ -d "${GRSISYS:?}/HILData/lib" ] ; then
+	libdir="${GRSISYS:?}/HILData/lib"
+elif [ -d "${GRSISYS:?}/lib" ] ; then
+	libdir="${GRSISYS:?}/lib"
 else
-	echo "Couldn't find either $GRSISYS/HILData/lib or $GRSISYS/lib directory, not sure what to do"
+	echo "Couldn't find either ${GRSISYS:?}/HILData/lib or ${GRSISYS:?}/lib directory, not sure what to do"
 	exit
 fi
-if [ -d "${GRSISYS}/HILData/include" ] ; then
-	incdir="${GRSISYS}/HILData/include"
-elif [ -d "${GRSISYS}/include" ] ; then
-	incdir="${GRSISYS}/include"
+if [ -d "${GRSISYS:?}/HILData/include" ] ; then
+	incdir="${GRSISYS:?}/HILData/include"
+elif [ -d "${GRSISYS:?}/include" ] ; then
+	incdir="${GRSISYS:?}/include"
 else
-	echo "Couldn't find either ${GRSISYS}/HILData/include or ${GRSISYS}/include directory, not sure what to do"
+	echo "Couldn't find either ${GRSISYS:?}/HILData/include or ${GRSISYS:?}/include directory, not sure what to do"
 	exit
 fi
 

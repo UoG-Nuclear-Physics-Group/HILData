@@ -62,6 +62,10 @@ set(CMAKE_INSTALL_LIBDIR ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_INSTALL_BINDIR ${CMAKE_BINARY_DIR}/bin)
 
 #----------------------------------------------------------------------------
+# copy includes
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/include DESTINATION ${CMAKE_BINARY_DIR})
+
+#----------------------------------------------------------------------------
 # define all libraries and root dictionaries
 # for some we also create dependencies on other libraries to remove linking errors later on
 
@@ -70,7 +74,7 @@ add_library(TRlmd SHARED
 	${PROJECT_SOURCE_DIR}/libraries/TRlmd/TRlmdFile.cxx
 	)
 root_generate_dictionary(G__TRlmd TRlmdEvent.h TRlmdFile.h MODULE TRlmd LINKDEF ${PROJECT_SOURCE_DIR}/libraries/TRlmd/LinkDef.h OPTIONS ${CLING_OPTIONS})
-target_link_libraries(TRlmd THILFormat ${ROOT_LIBRARIES})
+target_link_libraries(TRlmd PUBLIC THILFormat ${ROOT_LIBRARIES} ${GRSI_LIBRARIES})
 add_dependencies(TRlmd HILDataVersion)
 
 add_library(THILFormat SHARED
@@ -78,13 +82,13 @@ add_library(THILFormat SHARED
 	${PROJECT_SOURCE_DIR}/libraries/THILFormat/THILMnemonic.cxx
 	)
 root_generate_dictionary(G__THILFormat THILDetectorInformation.h THILMnemonic.h MODULE THILFormat LINKDEF ${PROJECT_SOURCE_DIR}/libraries/THILFormat/LinkDef.h)
-target_link_libraries(THILFormat TEagle TEaglePulser)
+target_link_libraries(THILFormat PUBLIC TEagle TEaglePulser ${GRSI_LIBRARIES})
 
 add_library(THILDataParser SHARED
 	${PROJECT_SOURCE_DIR}/libraries/THILDataParser/THILDataParser.cxx
 	${PROJECT_SOURCE_DIR}/libraries/THILDataParser/THILDataParserException.cxx
 	)
-target_link_libraries(THILDataParser THILFormat)
+target_link_libraries(THILDataParser PUBLIC THILFormat ${GRSI_LIBRARIES})
 
 add_library(TEagle SHARED
 	${PROJECT_SOURCE_DIR}/libraries/THILAnalysis/TEagle/TEagle.cxx
@@ -93,13 +97,13 @@ add_library(TEagle SHARED
 	${PROJECT_SOURCE_DIR}/libraries/THILAnalysis/TEagle/THILFragment.cxx
 	)
 root_generate_dictionary(G__TEagle TEagle.h TEagleHit.h TPinDiodeHit.h THILFragment.h MODULE TEagle LINKDEF ${PROJECT_SOURCE_DIR}/libraries/THILAnalysis/TEagle/LinkDef.h)
-target_link_libraries(TEagle ${GRSI_LIBRARIES})
+target_link_libraries(TEagle PUBLIC ${GRSI_LIBRARIES})
 
 add_library(TEaglePulser SHARED
 	${PROJECT_SOURCE_DIR}/libraries/THILAnalysis/TEaglePulser/TEaglePulser.cxx
 	)
 root_generate_dictionary(G__TEaglePulser TEaglePulser.h MODULE TEaglePulser LINKDEF ${PROJECT_SOURCE_DIR}/libraries/THILAnalysis/TEaglePulser/LinkDef.h)
-target_link_libraries(TEaglePulser ${GRSI_LIBRARIES})
+target_link_libraries(TEaglePulser PUBLIC ${GRSI_LIBRARIES})
 
 ##----------------------------------------------------------------------------
 # add the global library with the functions to create files and parsers
@@ -108,7 +112,7 @@ set(HILDATA_LIBRARIES TRlmd THILFormat THILDataParser TEagle TEaglePulser)
 add_library(HILData SHARED
 	${PROJECT_SOURCE_DIR}/src/HILDataLibrary.cxx
 	)
-target_link_libraries(HILData ${HILDATA_LIBRARIES})
+target_link_libraries(HILData PUBLIC ${HILDATA_LIBRARIES})
 add_dependencies(HILData HILDataVersion)
 
 ##----------------------------------------------------------------------------
